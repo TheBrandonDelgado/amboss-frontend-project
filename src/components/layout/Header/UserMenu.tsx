@@ -29,10 +29,12 @@ export default function UserMenu() {
 
       {/* Profile Menu */}
       <div className="relative h-[36px] w-[36px]">
-        <button className="w-[36px] h-[36px] rounded-full overflow-hidden">
-          <img 
+        <button className="rounded-full overflow-hidden">
+          <Image 
             src="/images/profile-photo.png" 
             alt="Profile"
+            width={36}
+            height={36}
             className="w-full h-full object-cover"
           />
         </button>
