@@ -2,11 +2,13 @@
 
 import { useQuery } from '@tanstack/react-query'
 import { graphqlClient } from "@/lib/graphql-client";
+import { OffersList } from "@/components/OffersList";
 
 interface OfferResponse {
   getOffers: {
     list: Array<{
       account: string;
+      avatar: string;
       amboss_fee_rate: number;
       base_fee: number;
       base_fee_cap: number;
@@ -107,7 +109,7 @@ export default function Home() {
         </div>
       </div>
       <div>
-
+        <OffersList offers={data?.getOffers?.list || []} />
       </div>
     </div>
   );

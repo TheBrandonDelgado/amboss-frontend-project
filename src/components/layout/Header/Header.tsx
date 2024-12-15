@@ -6,7 +6,7 @@ import UserMenu from './UserMenu'
 export default function Header() {
   return (
     <header className="border-b border-neutral-800 w-full">
-      <div className="mx-8 py-[10px] flex items-center justify-between">
+      <div className="mx-8 py-[10px] flex items-center justify-between overflow-x-auto gap-10">
         <div className="flex items-center gap-10">
             <Link href="/" className="flex items-center">
                 <Image 
@@ -14,6 +14,7 @@ export default function Header() {
                     alt="Logo"
                     width={136}
                     height={18}
+                    className="min-w-[136px]"
                 />
             </Link>
             

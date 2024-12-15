@@ -12,6 +12,12 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      gridTemplateColumns: {
+        '13': 'repeat(13, minmax(100px, 1fr))',
+      },
+      gridColumn: {
+        'span-13': 'span 13 / span 13',
+      },
       fontFamily: {
         sans: ["var(--font-inter)"],
       }
