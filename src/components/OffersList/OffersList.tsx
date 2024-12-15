@@ -17,7 +17,9 @@ const OffersList = ({ offers }: { offers: OfferType[] }) => {
                 </div>
                 
                 {/* Subheader Row */}
-                <div className="col-span-13 grid grid-cols-13 gap-2 border-b border-white/15 py-2 text-sm text-neutral-400 font-medium px-5 items-center">
+                <div 
+                    className="col-span-13 grid grid-cols-13 gap-2 border-b border-white/15 py-2 text-sm text-neutral-400 font-medium px-5 items-center"
+                >
                     <p className="col-span-2">Seller</p>
                     <p className="col-span-1 flex items-center gap-1">
                         Seller Score
@@ -37,7 +39,11 @@ const OffersList = ({ offers }: { offers: OfferType[] }) => {
 
                 {/* Data Rows */}
                 {offers.map((offer: OfferType, index: number) => (
-                    <div key={index} className={`col-span-13 grid grid-cols-13 ${index !== offers.length - 1 ? 'border-b border-white/15' : ''} gap-2 items-center px-5 hover:bg-neutral-800 cursor-pointer`}>
+                    <div 
+                        key={index} 
+                        className={`col-span-13 grid grid-cols-13 gap-2 items-center px-5 hover:bg-neutral-800 cursor-pointer
+                            ${index !== offers.length - 1 ? 'border-b border-white/15' : ''}`}
+                    >
                         <Offer offer={offer} index={index} />
                     </div>
                 ))}

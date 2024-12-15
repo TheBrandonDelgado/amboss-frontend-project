@@ -52,8 +52,7 @@ export default function Home() {
         if (!data) {
           return { getOffers: { list: [] } };
         }
-        
-        console.log(data)
+
         return data;
       } catch (error) {
         console.error('Error fetching offers:', error);
@@ -67,15 +66,27 @@ export default function Home() {
   return (
     <div>
       <div className="flex justify-between items-center py-12 px-8">
-        <h1 className="text-2xl font-semibold">Explore Offers ({data?.getOffers?.list?.length})</h1>
+        <h1 className="text-2xl font-semibold">Explore Offers {!isLoading && `(${data?.getOffers?.list?.length})`}</h1>
         <div className="flex gap-4">
-          <button className="bg-transparent text-white px-4 py-[10px] rounded-lg border border-white/15 font-semibold text-sm">Sell Channels</button>
-          <button className="bg-white text-black px-4 py-[10px] rounded-lg font-semibold text-sm">Buy Channels</button>
+          <button 
+            className="bg-transparent text-white px-4 py-[10px] rounded-lg border border-white/15 font-semibold text-sm">
+              Sell Channels
+          </button>
+          <button 
+            className="bg-white text-black px-4 py-[10px] rounded-lg font-semibold text-sm">
+              Buy Channels
+          </button>
         </div>
       </div>
-      {!isLoading && <div>
-        <OffersList offers={data?.getOffers?.list as Offer[] | []} />
-      </div>}
+      {isLoading ? (
+        <div className="flex justify-center items-center min-h-[200px]">
+          <div className="w-8 h-8 border-4 border-white/20 border-t-white/80 rounded-full animate-spin"></div>
+        </div>
+      ) : (
+        <div>
+          <OffersList offers={data?.getOffers?.list as Offer[] | []} />
+        </div>
+      )}
     </div>
   );
 }
