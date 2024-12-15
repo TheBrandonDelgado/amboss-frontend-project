@@ -65,7 +65,7 @@ export default function Home() {
 
   return (
     <div>
-      <div className="flex justify-between items-center py-12 px-8">
+      <div className="flex justify-between items-center pt-6 px-8">
         <h1 className="text-2xl font-semibold">Explore Offers {!isLoading && `(${data?.getOffers?.list?.length})`}</h1>
         <div className="flex gap-4">
           <button 
