@@ -108,9 +108,9 @@ export default function Home() {
           <button className="bg-white text-black px-4 py-[10px] rounded-lg font-semibold text-sm">Buy Channels</button>
         </div>
       </div>
-      <div>
+      {!isLoading && <div>
         <OffersList offers={data?.getOffers?.list || []} />
-      </div>
+      </div>}
     </div>
   );
 }

@@ -35,7 +35,7 @@ const OffersList = ({ offers }: { offers: any[] }) => {
                 </div>
 
                 {/* Data Rows */}
-                {offers.map((offer, index) => (
+                {offers.map((offer: any, index: number) => (
                     <div key={offer.id} className={`col-span-13 grid grid-cols-13 ${index !== offers.length - 1 ? 'border-b border-white/15' : ''} gap-2 items-center px-5 hover:bg-neutral-800 cursor-pointer`}>
                         <Offer offer={offer} index={index} />
                     </div>
