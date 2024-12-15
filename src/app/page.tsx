@@ -3,42 +3,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { graphqlClient } from "@/lib/graphql-client";
 import { OffersList } from "@/components/OffersList";
-
-interface OfferResponse {
-  getOffers: {
-    list: Array<{
-      account: string;
-      avatar: string;
-      amboss_fee_rate: number;
-      base_fee: number;
-      base_fee_cap: number;
-      conditions: Array<{
-        condition: string;
-        operator: string;
-        value: string;
-      }>;
-      fee_rate: number;
-      fee_rate_cap: number;
-      id: string;
-      max_size: number;
-      min_block_length: number;
-      min_size: number;
-      offer_type: string;
-      onchain_multiplier: number;
-      onchain_priority: number;
-      orders: Array<{
-        locked_size: number;
-      }>;
-      seller_score: number;
-      side: string;
-      status: string;
-      tags: Array<{
-        name: string;
-      }>;
-      total_size: number;
-    }>;
-  };
-}
+import { OfferResponse, Offer } from "@/lib/types";
 
 export default function Home() {
   const { data, isLoading } = useQuery({
@@ -109,7 +74,7 @@ export default function Home() {
         </div>
       </div>
       {!isLoading && <div>
-        <OffersList offers={data?.getOffers?.list || []} />
+        <OffersList offers={data?.getOffers?.list as Offer[] | []} />
       </div>}
     </div>
   );

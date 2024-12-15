@@ -1,6 +1,7 @@
 import Image from 'next/image';
+import { Offer as OfferType, Tag, MockedData } from "@/lib/types";
 
-export const Offer = ({ offer, index }: { offer: any, index: number }) => {
+export const Offer = ({ offer, index }: { offer: OfferType, index: number }) => {
     const tagColorClasses: { [key: string]: { text: string, border: string } } = {
         "Node Runner": {
             text: "text-lime-400",
@@ -20,7 +21,7 @@ export const Offer = ({ offer, index }: { offer: any, index: number }) => {
         }
     };
 
-    const mockedData = [
+    const mockedData: MockedData[] = [
         {
             min_channel_age: 90,
             max_apr: 4.07,
@@ -58,7 +59,7 @@ export const Offer = ({ offer, index }: { offer: any, index: number }) => {
             <div className="py-2 text-sm flex flex-col gap-1 overflow-hidden">
                 <p className="text-sm truncate">{offer.account}</p>
                 <div className="flex flex-wrap gap-1">
-                    {offer.tags.map((tag: any, index: number) => {
+                    {offer.tags.map((tag: Tag, index: number) => {
                         const tagStyles = tagColorClasses[tag.name] || { text: "text-foreground", border: "border-foreground" };
                         return (
                             <div key={index} className={`rounded-lg border-2 py-[2px] px-[6px] ${tagStyles.border}`}>
@@ -68,12 +69,12 @@ export const Offer = ({ offer, index }: { offer: any, index: number }) => {
                     })}
                 </div>
                 <p className="text-neutral-300 text-xs">
-                    {offer.conditions.find(({ condition }: any) => condition === "NODE_CHANNELS")?.value && 
-                        `${offer.conditions.find(({ condition }: any) => condition === "NODE_CHANNELS")?.value}ch`}
-                    {offer.conditions.find(({ condition }: any) => condition === "NODE_CHANNELS")?.value && 
-                     offer.conditions.find(({ condition }: any) => condition === "NODE_CAPACITY")?.value && " / "}
-                    {offer.conditions.find(({ condition }: any) => condition === "NODE_CAPACITY")?.value && 
-                        `${satsToBTC(Number(offer.conditions.find(({ condition }: any) => condition === "NODE_CAPACITY")?.value)).toFixed(2)} BTC cap`}
+                    {offer.conditions.find(({ condition }) => condition === "NODE_CHANNELS")?.value && 
+                        `${offer.conditions.find(({ condition }) => condition === "NODE_CHANNELS")?.value}ch`}
+                    {offer.conditions.find(({ condition }) => condition === "NODE_CHANNELS")?.value && 
+                     offer.conditions.find(({ condition }) => condition === "NODE_CAPACITY")?.value && " / "}
+                    {offer.conditions.find(({ condition }) => condition === "NODE_CAPACITY")?.value && 
+                        `${satsToBTC(Number(offer.conditions.find(({ condition }) => condition === "NODE_CAPACITY")?.value)).toFixed(2)} BTC cap`}
                 </p>
             </div>
         </div>
@@ -88,16 +89,16 @@ export const Offer = ({ offer, index }: { offer: any, index: number }) => {
         <p className="col-span-1 py-2 text-sm">{satsToBTC(offer.max_size).toFixed(2)}</p>
         <div className="col-span-1 py-2 flex flex-col gap-2 items-start">
             <p className="text-sm">{satsToBTC(Number(offer.total_size) - Number(offer.orders.locked_size)).toFixed(3)} BTC</p>
-            <p className="text-sm text-neutral-300">Total: {satsToBTC(offer.total_size).toFixed(3)} BTC</p>
+            <p className="text-sm text-neutral-300">Total: {satsToBTC(Number(offer.total_size)).toFixed(3)} BTC</p>
         </div>
-        <p className="col-span-1 py-2 text-sm flex flex-col gap-2 items-start">
+        <div className="col-span-1 py-2 text-sm flex flex-col gap-2 items-start">
             <p className="text-sm text-neutral-300">
                 {mockedData[index % 3].orders} orders
             </p>
             <p className="text-sm text-neutral-300">
                 {mockedData[index % 3].capacity} BTC
             </p>
-        </p>
+        </div>
     </>;
 };
 

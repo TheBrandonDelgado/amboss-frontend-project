@@ -1,7 +1,8 @@
 import { Offer } from "./Offer";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
+import { Offer as OfferType } from "@/lib/types";
 
-const OffersList = ({ offers }: { offers: any[] }) => {
+const OffersList = ({ offers }: { offers: OfferType[] }) => {
     return (
         <div className="overflow-x-auto">
             <div className="grid grid-cols-13 min-w-[1400px] mx-8 border border-white/15 rounded-xl my-6">
@@ -35,8 +36,8 @@ const OffersList = ({ offers }: { offers: any[] }) => {
                 </div>
 
                 {/* Data Rows */}
-                {offers.map((offer: any, index: number) => (
-                    <div key={offer.id} className={`col-span-13 grid grid-cols-13 ${index !== offers.length - 1 ? 'border-b border-white/15' : ''} gap-2 items-center px-5 hover:bg-neutral-800 cursor-pointer`}>
+                {offers.map((offer: OfferType, index: number) => (
+                    <div key={index} className={`col-span-13 grid grid-cols-13 ${index !== offers.length - 1 ? 'border-b border-white/15' : ''} gap-2 items-center px-5 hover:bg-neutral-800 cursor-pointer`}>
                         <Offer offer={offer} index={index} />
                     </div>
                 ))}
